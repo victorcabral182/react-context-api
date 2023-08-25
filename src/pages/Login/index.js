@@ -1,27 +1,18 @@
-import { Button } from '@material-ui/core';
-import {
-  Container,
-  Titulo,
-  InputContainer
-} from './styles';
-import {
-  Input,
-  InputLabel,
-  InputAdornment 
-} from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { Button } from "@material-ui/core"
+import { Container, Titulo, InputContainer } from "./styles"
+import { Input, InputLabel, InputAdornment } from "@material-ui/core"
+import { useHistory } from "react-router-dom"
+import { UserContext } from "common/context/User"
+import { useContext } from "react"
 
-function Login({ nome, setNome, saldo, setSaldo }) {
-  const history = useHistory();
+function Login() {
+  const history = useHistory()
+  const { nome, setNome, saldo, setSaldo } = useContext(UserContext)
   return (
     <Container>
-      <Titulo>
-        Insira o seu nome
-      </Titulo>
+      <Titulo>Insira o seu nome</Titulo>
       <InputContainer>
-        <InputLabel>
-          Nome
-        </InputLabel>
+        <InputLabel>Nome</InputLabel>
         <Input
           value={nome}
           onChange={(evento) => setNome(evento.target.value)}
@@ -29,19 +20,13 @@ function Login({ nome, setNome, saldo, setSaldo }) {
         />
       </InputContainer>
       <InputContainer>
-        <InputLabel>
-          Saldo
-        </InputLabel>
+        <InputLabel>Saldo</InputLabel>
         <Input
-        type="number"
-        value={saldo}
-        onChange={(evento) => setSaldo(evento.target.value)}
-        startAdornment={
-          <InputAdornment position="start">
-            R$
-          </InputAdornment>
-        }
-      />
+          type="number"
+          value={saldo}
+          onChange={(evento) => setSaldo(evento.target.value)}
+          startAdornment={<InputAdornment position="start">R$</InputAdornment>}
+        />
       </InputContainer>
       <Button
         variant="contained"
@@ -52,6 +37,6 @@ function Login({ nome, setNome, saldo, setSaldo }) {
       </Button>
     </Container>
   )
-};
+}
 
-export default Login;
+export default Login
