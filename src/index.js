@@ -1,37 +1,28 @@
-import {
-  Container,
-  Header,
-  Lista,
-} from './styles';
-import feira from './feira.json';
-import Produto from 'components/Produto';
-import NavBar from './NavBar';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { StylesProvider } from '@material-ui/core/styles';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Router from './routes';
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#2A9F85'
+    },
+    secondary: {
+      main: '#FF7070'
+    },
+  }
+})
 
-function Feira() {
-  return (
-    <Container>
-      <NavBar />
-      <Header>
-        <div>
-          <h2> Olá!</h2>
-          <h3> Saldo: R$</h3>
-        </div>
-        <p>Encontre os melhores produtos orgânicos!</p>
-      </Header>
-      <Lista>
-        <h2>
-          Produtos:
-        </h2>
-        {feira.map(produto => (
-          <Produto
-            {...produto}
-            key={produto.id}
-          />
-        ))}
-      </Lista>
-    </Container>
-  )
-}
-
-export default Feira;
+ReactDOM.render(
+  <React.StrictMode>
+    <StylesProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Router />
+      </ThemeProvider>
+    </StylesProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
