@@ -13,14 +13,14 @@ function Router() {
           <Route exact path="/">
             <Login />
           </Route>
-          <Route path="/feira">
-            <CartProvider>
+          <CartProvider>
+            <Route path="/feira">
               <Feira />
-            </CartProvider>
-          </Route>
-          <Route path="/carrinho">
-            <Carrinho />
-          </Route>
+            </Route>
+            <Route path="/carrinho">
+              <Carrinho />
+            </Route>
+          </CartProvider>
         </UserProvider>
       </Switch>
     </BrowserRouter>

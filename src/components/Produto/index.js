@@ -6,10 +6,8 @@ import RemoveIcon from "@material-ui/icons/Remove"
 import { useCartContext } from "../../common/context/Cart"
 
 function Produto({ nome, foto, id, valor, unidade }) {
-  const { cart, addToCart } = useCartContext()
+  const { cart, addToCart, removeFromCart } = useCartContext()
   const productInCart = cart.find((itemIncart) => itemIncart.id === id)
-
-  console.log(cart)
 
   return (
     <Container>
@@ -20,11 +18,18 @@ function Produto({ nome, foto, id, valor, unidade }) {
         </p>
       </div>
       <div>
-        <IconButton color="secondary">
+        <IconButton
+          onClick={() => removeFromCart(id)}
+          color="secondary"
+          disabled={!productInCart}
+        >
           <RemoveIcon />
         </IconButton>
         {productInCart?.quantidade || 0}
-        <IconButton onClick={() => addToCart({ nome, foto, id, valor })}>
+        <IconButton
+          onClick={() => addToCart({ nome, foto, id, valor })}
+          color="primary"
+        >
           <AddIcon />
         </IconButton>
       </div>
